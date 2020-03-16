@@ -15,7 +15,6 @@
     <description>A basic development template build on Spring Boot</description>
     <!--这里配置打包类型-->
     <packaging>war</packaging>
-
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -35,7 +34,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.21</version>
         </dependency>
         <!--数据库驱动-->
         <dependency>
@@ -47,6 +46,22 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <!-- MybatisPlus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-extension</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+        <!--spring security支持-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-security</artifactId>-->
+        <!--</dependency>-->
         <!--日志服务-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,7 +87,7 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.9.0</version>
+            <version>0.9.1</version>
         </dependency>
         <!--Hutool工具类-->
         <dependency>
@@ -90,6 +105,18 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
+            <exclusions>
+                <!--排除接口工具类-->
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+                <!--排除动态编程类库-->
+                <exclusion>
+                    <artifactId>javassist</artifactId>
+                    <groupId>org.javassist</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--alibaba-JSON支持-->
         <dependency>

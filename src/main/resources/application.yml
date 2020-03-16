@@ -1,39 +1,40 @@
-server: #Íâ²¿ÏµÍ³´«Êı¾İ¹ıÀ´ÖĞÎÄÂÒÂëÎÊÌâ
+server: #å¤–éƒ¨ç³»ç»Ÿä¼ æ•°æ®è¿‡æ¥ä¸­æ–‡ä¹±ç é—®é¢˜
   port: 8080
+  servlet:
+    context-path: /
   tomcat:
     uri-encoding: UTF-8
-mybatis:
-  mapper-locations:
-    - classpath:dao/*.xml
-    - classpath*:com/**/mapper/*.xml
-#Êı¾İ¿âÏà¹ØÅäÖÃ
+    max-threads: 1000
+    min-spare-threads: 30
+#æ•°æ®åº“ç›¸å…³é…ç½®
 spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/akalin?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: root
   datasource:
     url: jdbc:mysql://localhost:3306/akalin?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: root
-#    datasource:
-#      type: com.alibaba.druid.pool.DruidDataSource
-#      driver-class-name: oracle.jdbc.OracleDriver
-#      url: jdbc:oracle:thin:@127.0.0.1:1521:ecology
-#      username: root
-#      password: root
-#      max-idle: 10
-#      max-wait: 1000
-#      min-idle: 5
-#      initial-size: 5
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    max-idle: 10
+    max-wait: 1000
+    min-idle: 5
+    initial-size: 5
+
   #  thymeleaf:
-  #    cache: false #¿ª·¢»·¾³Çå³ı»º´æ
+  #    cache: false #å¼€å‘ç¯å¢ƒæ¸…é™¤ç¼“å­˜
   #  jpa:
   #    show-sql: true
-  http: #Íâ²¿ÏµÍ³´«Êı¾İ¹ıÀ´ÖĞÎÄÂÒÂëÎÊÌâ
+  http: #å¤–éƒ¨ç³»ç»Ÿä¼ æ•°æ®è¿‡æ¥ä¸­æ–‡ä¹±ç é—®é¢˜
     encoding:
       force: true
       charset: UTF-8
       enabled: true
-  application: #Ö÷»úÃû³Æ
+  application: #ä¸»æœºåç§°
     name: Spring-boot-basic-development-template
-  #  rabbitmq: #ÏûÏ¢¶ÓÁĞÍÆËÍÖÁÏµÍ³ĞÅÏ¢
+  #  rabbitmq: #æ¶ˆæ¯é˜Ÿåˆ—æ¨é€è‡³ç³»ç»Ÿä¿¡æ¯
   #    host: 10.12.0.57
   #    port: 8080
   #    username: root
@@ -43,8 +44,8 @@ spring:
       enabled: true
       max-file-size: 20MB
       max-request-size: 20MB
-  ## Redis ÅäÖÃ
-  ## RedisÊı¾İ¿âË÷Òı£¨Ä¬ÈÏÎª0£©
+  ## Redis é…ç½®
+  ## Redisæ•°æ®åº“ç´¢å¼•ï¼ˆé»˜è®¤ä¸º0ï¼‰
   redis:
     database: 1
     host: 127.0.0.1
@@ -57,10 +58,32 @@ spring:
         max-idle: 8
         min-idle: 0
     timeout: 1200
+  # å®šæ—¶ä»»åŠ¡
+#  quartz:
+#    # ä»»åŠ¡ä¿¡æ¯å­˜å‚¨è‡³æ•°æ®åº“
+#    job-store-type: jdbc
+#    properties:
+#      org:
+#        quartz:
+#          jobStore:
+#            misfireThreshold: 100
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
 
-#ÅäÖÃÕâ¸ö¿ÉÒÔ´òÓ¡sql¡¢²ÎÊı¡¢²éÑ¯½á¹ûµÄ
+# æ—¥å¿—
 logging:
-  config: classpath:log4j2-spring-dev.xml
+  #é…ç½®è¿™ä¸ªå¯ä»¥æ‰“å°sqlã€å‚æ•°ã€æŸ¥è¯¢ç»“æœçš„
+#  config: classpath:log4j2-spring-dev.xml
+  # è¾“å‡ºçº§åˆ«
+  level:
+    root: info
+  file:
+    # æŒ‡å®šè·¯å¾„
+    path: logs
+    # æœ€å¤§ä¿å­˜å¤©æ•°
+    max-history: 7
+    # æ¯ä¸ªæ–‡ä»¶æœ€å¤§å¤§å°
+    max-size: 5MB
 #log:
 #  backupFileNamePolicy: server-%d{yyyy-MM-dd}.%i.log
 #  fileBackupPath: D://log/

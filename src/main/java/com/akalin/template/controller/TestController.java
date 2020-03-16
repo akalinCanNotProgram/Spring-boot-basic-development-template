@@ -1,8 +1,13 @@
 package com.akalin.template.controller;
 
-import com.akalin.template.utils.RedisUtils;
-import com.akalin.template.utils.vo.Result;
-import com.akalin.template.utils.vo.ResultUtil;
+import com.akalin.template.comment.redis.RedisUtils;
+import com.akalin.template.comment.vo.Result;
+import com.akalin.template.comment.utils.ResultUtil;
+import com.akalin.template.pojo.PageData;
+import com.akalin.template.service.Test;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +30,19 @@ public class TestController {
     @Autowired
     RedisUtils redisUtils;
 
+    @Autowired
+    Test test;
+
     @ApiOperation("Get请求")
     @GetMapping
     public Result get(@RequestParam(value = "param1",required = false,defaultValue = "2") int totleRate,
                                              @RequestParam(value = "param2",required = false,defaultValue = "2") int singleRate){
 
         try{
+            PageHelper.startPage(1, 2);
+            Page<PageData> page = test.test();
+            PageInfo<PageData> pageInfo = new PageInfo(page);
+            return new ResultUtil().setData(pageInfo,"get请求成功！！");
 
                 //do something
 
@@ -38,7 +50,6 @@ public class TestController {
             e.printStackTrace();
             return new ResultUtil().setErrorMsg("Get请求出现异常！！异常类型："+e.getMessage());
         }
-        return new ResultUtil().setData(null,"get请求成功！！");
     }
 
     @ApiOperation("Post请求")

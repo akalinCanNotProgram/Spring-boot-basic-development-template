@@ -1,5 +1,8 @@
 package com.akalin.template.service;
 
+import com.akalin.template.pojo.PageData;
+import com.github.pagehelper.Page;
+
 /**
  * @InerfaceName Test
  * @Description 测试服务
@@ -13,10 +16,10 @@ public interface Test {
      * @Description //TODO
      * @author Akalin
      * @Date 2020/3/14 22:39
-     * @param url
-     * @param redisKey
      * @return void
      * @throws
      */
     void pullData(String url,String redisKey);
+
+    Page<PageData> test();
 }

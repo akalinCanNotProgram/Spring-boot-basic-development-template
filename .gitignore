@@ -1,8 +1,8 @@
-HELP.md
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-
+*mvnw
+mvnw.cmd
 ### STS ###
 .apt_generated
 .classpath
@@ -24,9 +24,10 @@ HELP.md
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
+/build/
 /target/
 /test/
+/logs/
 
 ### VS Code ###
 .vscode/
