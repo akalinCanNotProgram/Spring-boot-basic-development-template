@@ -19,8 +19,7 @@ import java.util.Date;
  * @author Exrickx
  */
 @Data
-@TableName(value = "tb_employee")//指定表名
-@JsonIgnoreProperties
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
 public abstract class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

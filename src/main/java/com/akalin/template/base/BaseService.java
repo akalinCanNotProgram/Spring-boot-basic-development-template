@@ -1,10 +1,7 @@
 package com.akalin.template.base;
 
-import com.github.pagehelper.Page;
-import org.springframework.data.domain.Pageable;
 import java.io.Serializable;
-import java.util.Iterator;
-import java.util.List;
+
 
 
 /**
@@ -15,6 +12,7 @@ import java.util.List;
 public interface BaseService<E, ID extends Serializable>{
 
     BaseDao<E, ID> getRepository();
+
 
     /**
      * 根据ID获取

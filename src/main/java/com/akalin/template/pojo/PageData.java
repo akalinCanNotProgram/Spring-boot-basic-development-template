@@ -1,5 +1,7 @@
 package com.akalin.template.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
